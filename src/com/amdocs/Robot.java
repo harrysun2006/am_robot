@@ -42,7 +42,7 @@ public class Robot {
     this.maxy = maxy;
   }
 
-  public boolean place(int x, int y, Direction f) {
+  protected boolean place(int x, int y, Direction f) {
     if (x < 0 || x >= maxx || y < 0 || y >= maxy || f == null) return false;
     this.x = x;
     this.y = y;
@@ -54,7 +54,7 @@ public class Robot {
    * command: MOVE
    * MOVE will move the toy robot one unit forward in the direction it is currently facing.
    */
-  public boolean move() {
+  protected boolean move() {
     if (!isValid()) return false;
     boolean r = false;
     if (facing == Direction.NORTH) {
@@ -85,7 +85,7 @@ public class Robot {
    * command: LEFT
    * LEFT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.
    */
-  public boolean left() {
+  protected boolean left() {
     if (!isValid()) return false;
     if (facing == Direction.NORTH) facing = Direction.WEST;
     else if (facing == Direction.WEST) facing = Direction.SOUTH;
@@ -99,7 +99,7 @@ public class Robot {
    * command: RIGHT
    * RIGHT will rotate the robot 90 degrees in the specified direction without changing the position of the robot.
    */
-  public boolean right() {
+  protected boolean right() {
     if (!isValid()) return false;
     if (facing == Direction.NORTH) facing = Direction.EAST;
     else if (facing == Direction.EAST) facing = Direction.SOUTH;
@@ -125,7 +125,7 @@ public class Robot {
     this.writer = writer;
   }
 
-  public boolean report() {
+  protected boolean report() {
     if (!isValid()) return false;
     try {
       writer.write(String.format("%d,%d,%s\n", x, y, facing));
